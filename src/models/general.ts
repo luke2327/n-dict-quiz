@@ -1,0 +1,1 @@
+export type SUPPORTED_LANGUAGE = 'JA';
