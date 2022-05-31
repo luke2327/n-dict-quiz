@@ -18,7 +18,6 @@ export default async function handler(
   }
 
   const { token } = req.body as Record<'token', string>;
-
   const result = await customAxiosInstance(token)({
     method: 'get',
     url: '/wordbookUserProfile/commonproxy/dict/user/profile'

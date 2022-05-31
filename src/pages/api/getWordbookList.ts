@@ -16,10 +16,7 @@ export default async function handler(
     res.status(500).send({ error: 'failed to fetch data' })
   }
 
-  console.log('initial');
-
   const { token } = req.body as Record<'token', string>;
-
   const result = await customAxiosInstance(token, 'https://learn.dict.naver.com')({
     method: 'get',
     url: '/gateway-api/jakodict/mywordbook/wordbook/list.dict',

@@ -1,5 +1,6 @@
 import PetitProfile from "@components/general/PetitProfile";
 import TokenField from "@components/general/TokenField";
+import CountWord from "@components/language/CountWord";
 import WordbookList from "@components/language/WordbookList";
 import { Box } from "@mui/material";
 import { languageState } from "@src/store/general";
@@ -40,7 +41,12 @@ const LanguageDictionary = () => {
       }
       {
         languageStore.indexPageStep === 3
-          ? <WordbookList />
+          ? (
+            <Box sx={{ p: 1 }}>
+              <CountWord />
+              <WordbookList />
+            </Box>
+          )
           : null
       }
     </Box>

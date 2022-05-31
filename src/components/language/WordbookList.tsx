@@ -32,7 +32,6 @@ const WordbookList = () => {
       sx={{
         '& .MuiList-root': { p: 0 },
         '& .MuiListItem-root': { p: 0, py: 0.5 },
-        p: 1
       }}
     >
       <Typography fontWeight={500}>単語帳リスト</Typography>

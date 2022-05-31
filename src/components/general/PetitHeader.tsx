@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { generalState } from "@src/store/general";
 import { useRecoilValue } from "recoil";
-import Breadcrumbs from "./BreadCrumbs";
+import Breadcrumbs from "./Breadcrumbs";
 
 const PetitHeader = () => {
   const general = useRecoilValue(generalState);
