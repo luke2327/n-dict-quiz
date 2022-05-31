@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { authState } from "@src/store/general";
 import { COUNT_WORD } from "@models/dict";
 import { dictState } from "@src/store/dict";
+import { useRouter } from "next/router";
 
 const PaperSx: SxProps<Theme> = {
   width: 80,
@@ -62,8 +63,15 @@ const paperTitle: Record<keyof COUNT_WORD, string> = {
   readCount: '覚えた'
 }
 
+const paperRoutes: Record<keyof COUNT_WORD, string> = {
+  recentCount: 'all',
+  unReadCount: 'non_memorization',
+  readCount: 'memorization'
+}
+
 const CountWord = () => {
   const [dict, setDict] = useRecoilState(dictState);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -85,6 +93,10 @@ const CountWord = () => {
     getCountWord();
   }, []);
 
+  const selectDict = (id: keyof COUNT_WORD) => {
+    router.push(router.asPath + '/' + paperRoutes[id]);
+  }
+
   return (
     <Box mb={2}>
       {
@@ -99,6 +111,7 @@ const CountWord = () => {
                     elevation={1}
                     variant="outlined"
                     square
+                    onClick={() => selectDict(key as keyof COUNT_WORD)}
                   >
                     <Typography variant="h1">{value}</Typography>
                     <Typography fontSize={12} pl={0.3}>{paperTitle[key as keyof COUNT_WORD]}</Typography>
