@@ -1,15 +1,27 @@
 import PetitProfile from "@components/general/PetitProfile";
 import TokenField from "@components/general/TokenField";
-import { Box, Typography, Button } from "@mui/material";
+import WordbookList from "@components/language/WordbookList";
+import { Box } from "@mui/material";
 import { languageState } from "@src/store/general";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 const LanguageDictionary = () => {
-  const languageStore = useRecoilValue(languageState);
+  const [languageStore, setLanguageStore] = useRecoilState(languageState);
   const router = useRouter();
   const { language } = router.query;
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      setLanguageStore({
+        indexPageStep: 3
+      });
+    }
+  }, [setLanguageStore])
 
   return (
     <Box>
@@ -24,6 +36,11 @@ const LanguageDictionary = () => {
       {
         languageStore.indexPageStep === 2
           ? <PetitProfile />
+          : null
+      }
+      {
+        languageStore.indexPageStep === 3
+          ? <WordbookList />
           : null
       }
     </Box>
