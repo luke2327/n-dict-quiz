@@ -22,3 +22,12 @@ export const languageState = atom<{
     indexPageStep: 1
   }
 });
+
+export const authState = atom<{
+  token: string;
+}>({
+  key: 'auth',
+  default: {
+    token: ''
+  }
+});
