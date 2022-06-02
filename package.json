@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-check": "prettier --check './src/**/*.{ts,tsx}'"
+    "prettier-check": "prettier --check './src/**/*.{ts,tsx}'",
+    "prettier-write": "prettier --write './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",

@@ -29,6 +29,7 @@
     // 변수명에 ignored or Ignored가 들어갈 시 무시, 함수의 인자는 체크 x
     "no-unused-vars": ["warn", { "varsIgnorePattern": "[iI]gnored", "args": "none" }],
     "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "[iI]gnored", "args": "none" }],
+    "@typescript-eslint/no-empty-function": 0,
     "import/no-anonymous-default-export": [2, {"allowObject": true, "allowArrowFunction": true}],
     "react/display-name": 0,
     "jsx-a11y/alt-text": 0

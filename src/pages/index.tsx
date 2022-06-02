@@ -1,5 +1,5 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Head from 'next/head';
 import { Box, Typography } from '@mui/material';
 import LanguageChooser from '@components/language/LanguageChooser';
 
@@ -18,11 +18,11 @@ const Home: NextPage = () => {
         </Box>
       </Box>
       <Box pt={4}>
-        <Typography variant='h2'>Choose language</Typography>
+        <Typography variant="h2">Choose language</Typography>
         <LanguageChooser />
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

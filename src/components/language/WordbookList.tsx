@@ -1,8 +1,15 @@
-import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material"
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { authState } from "@src/store/general";
-import { useRecoilValue } from "recoil";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { authState } from '@src/store/general';
+import { useRecoilValue } from 'recoil';
 import type { WORDBOOK } from '@models/dict';
 
 const WordbookList = () => {
@@ -11,12 +18,12 @@ const WordbookList = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
       ? localStorage.getItem('token')
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      : useRecoilValue(authState);
+      : // eslint-disable-next-line react-hooks/rules-of-hooks
+        useRecoilValue(authState);
 
     async function getWordbookList() {
       const result = await axios.post<WORDBOOK[]>('./api/getWordbookList', {
-        token
+        token,
       });
 
       console.log(result.data);
@@ -36,31 +43,37 @@ const WordbookList = () => {
     >
       <Typography fontWeight={500}>単語帳リスト</Typography>
 
-      <List component='div'>
-        {
-          wordbookList
-            ? wordbookList.map(v => (
+      <List component="div">
+        {wordbookList
+          ? wordbookList.map(v => (
               <Box key={v.id}>
-                <ListItem sx={{
-                  cursor: 'pointer'
-                }}>
-                  <Box display="flex" alignItems={'center'} justifyContent={'space-around'}>
+                <ListItem
+                  sx={{
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Box
+                    display="flex"
+                    alignItems={'center'}
+                    justifyContent={'space-around'}
+                  >
                     <ListItemText>
                       <Typography variant="subtitle1">{v.name}</Typography>
                     </ListItemText>
                     <ListItemText>
-                      <Typography variant="caption" ml={1}>{v.wordCount}</Typography>
+                      <Typography variant="caption" ml={1}>
+                        {v.wordCount}
+                      </Typography>
                     </ListItemText>
                   </Box>
                 </ListItem>
                 <Divider />
               </Box>
             ))
-            : null
-        }
+          : null}
       </List>
     </Box>
-  )
-}
+  );
+};
 
 export default WordbookList;

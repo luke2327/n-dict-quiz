@@ -1,5 +1,5 @@
-import { PROFILE } from "@models/profile";
-import { atom } from "recoil";
+import { PROFILE } from '@models/profile';
+import { atom } from 'recoil';
 
 export const profileState = atom<PROFILE>({
   key: 'profile',
@@ -7,6 +7,6 @@ export const profileState = atom<PROFILE>({
     nuid: '',
     nickName: '',
     imageUrl: '',
-    loginStatus: ''
-  }
+    loginStatus: '',
+  },
 });

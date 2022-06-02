@@ -1,9 +1,9 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 import type { COUNT_WORD, WORDBOOK } from '@models/dict';
 
 export const dictState = atom<{
-  wordbook: WORDBOOK[],
-  countWord: COUNT_WORD
+  wordbook: WORDBOOK[];
+  countWord: COUNT_WORD;
 }>({
   key: 'dict',
   default: {
@@ -12,6 +12,6 @@ export const dictState = atom<{
       readCount: 0,
       recentCount: 0,
       unReadCount: 0,
-    }
-  }
-})
+    },
+  },
+});

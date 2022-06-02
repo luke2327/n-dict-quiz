@@ -1,8 +1,8 @@
-import { Box, Typography, Button } from "@mui/material"
-import { authState, languageState } from "@src/store/general";
-import { profileState } from "@src/store/profile";
-import { useRouter } from "next/router";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { Box, Typography, Button } from '@mui/material';
+import { authState, languageState } from '@src/store/general';
+import { profileState } from '@src/store/profile';
+import { useRouter } from 'next/router';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const PetitProfile = () => {
   const profile = useRecoilValue(profileState);
@@ -12,14 +12,14 @@ const PetitProfile = () => {
   const goToIndex = () => {
     router.push('/');
     setAuth({
-      token: ''
-    })
-  }
+      token: '',
+    });
+  };
   const next = () => {
     setLanguageStore({
-      indexPageStep: 3
+      indexPageStep: 3,
     });
-  }
+  };
 
   return (
     <Box>
@@ -29,12 +29,16 @@ const PetitProfile = () => {
       <Box>
         <Typography>これが貴方の名前ですか</Typography>
         <Box width="100%" display="flex">
-          <Button fullWidth variant="white" onClick={goToIndex}>いいえ</Button>
-          <Button fullWidth onClick={next}>はい</Button>
+          <Button fullWidth variant="white" onClick={goToIndex}>
+            いいえ
+          </Button>
+          <Button fullWidth onClick={next}>
+            はい
+          </Button>
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 export default PetitProfile;
