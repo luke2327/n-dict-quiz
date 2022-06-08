@@ -1,3 +1,38 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/prop-types": 0,
+    // "no-unused-vars": "warn",
+    // 변수명에 ignored or Ignored가 들어갈 시 무시, 함수의 인자는 체크 x
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "[iI]gnored", "args": "none" }],
+    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "[iI]gnored", "args": "none" }],
+    "@typescript-eslint/no-empty-function": 0,
+    "import/no-anonymous-default-export": [2, {"allowObject": true, "allowArrowFunction": true}],
+    "react/display-name": 0,
+    "jsx-a11y/alt-text": 0,
+    "@typescript-eslint/no-explicit-any": 0
+  }
 }

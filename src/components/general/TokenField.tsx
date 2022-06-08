@@ -1,10 +1,10 @@
-import { PROFILE } from "@models/profile";
-import { Box, Button, TextField } from "@mui/material"
-import { authState, languageState } from "@src/store/general";
-import { profileState } from "@src/store/profile";
-import axios from "axios";
-import { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { PROFILE } from '@models/profile';
+import { Box, Button, TextField } from '@mui/material';
+import { authState, languageState } from '@src/store/general';
+import { profileState } from '@src/store/profile';
+import axios from 'axios';
+import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 
 const TokenField = () => {
   const [token, setToken] = useState('EUR');
@@ -18,21 +18,21 @@ const TokenField = () => {
 
   const submit = async () => {
     const result = await axios.post('./api/getToken', {
-      token
+      token,
     });
 
     const data: PROFILE = result.data;
     setProfile({
-      ...data
+      ...data,
     });
     setLanguageStore({
-      indexPageStep: 2
+      indexPageStep: 2,
     });
     setAuth({
-      token
+      token,
     });
     localStorage.setItem('token', token);
-  }
+  };
 
   return (
     <Box
@@ -50,7 +50,7 @@ const TokenField = () => {
       ></TextField>
       <Button onClick={submit}>Submit</Button>
     </Box>
-  )
-}
+  );
+};
 
 export default TokenField;

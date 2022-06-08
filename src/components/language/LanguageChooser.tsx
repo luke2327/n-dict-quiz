@@ -1,5 +1,16 @@
-import { Box, Typography, Grid, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import type { SUPPORTED_LANGUAGE, SUPPORTED_LANGUAGE_LOWER } from '@models/general';
+import {
+  Box,
+  Typography,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
+import type {
+  SUPPORTED_LANGUAGE,
+  SUPPORTED_LANGUAGE_LOWER,
+} from '@models/general';
 import { styled } from '@mui/material/styles';
 import FolderIcon from '@mui/icons-material/Folder';
 import React from 'react';
@@ -21,8 +32,8 @@ const LanguageChooser: React.FC = () => {
       ...general,
       currentLanguage: language,
       selectedLanguage: language,
-      routedLanguage: language.toLowerCase() as SUPPORTED_LANGUAGE_LOWER
-    })
+      routedLanguage: language.toLowerCase() as SUPPORTED_LANGUAGE_LOWER,
+    });
     router.push('./' + language.toLowerCase());
   };
 
@@ -38,18 +49,16 @@ const LanguageChooser: React.FC = () => {
                 onClick={() => chooseLanguage(language)}
               >
                 <ListItemIcon sx={{ minWidth: 30 }}>
-                  <FolderIcon fontSize='small' />
+                  <FolderIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText
-                  primary={language}
-                />
+                <ListItemText primary={language} />
               </ListItem>
             ))}
           </List>
         </Demo>
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
 export default LanguageChooser;

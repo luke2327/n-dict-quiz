@@ -1,16 +1,16 @@
-import { atom } from "recoil";
-import { SUPPORTED_LANGUAGE, SUPPORTED_LANGUAGE_LOWER  } from "@models/general";
+import { atom } from 'recoil';
+import { SUPPORTED_LANGUAGE, SUPPORTED_LANGUAGE_LOWER } from '@models/general';
 
 export const generalState = atom<{
   currentLanguage: string;
   selectedLanguage: SUPPORTED_LANGUAGE | '';
-  routedLanguage: SUPPORTED_LANGUAGE_LOWER | ''
+  routedLanguage: SUPPORTED_LANGUAGE_LOWER | '';
 }>({
   key: 'general',
   default: {
     currentLanguage: '',
     selectedLanguage: '',
-    routedLanguage: ''
+    routedLanguage: '',
   },
 });
 
@@ -19,8 +19,8 @@ export const languageState = atom<{
 }>({
   key: 'language',
   default: {
-    indexPageStep: 1
-  }
+    indexPageStep: 1,
+  },
 });
 
 export const authState = atom<{
@@ -28,6 +28,6 @@ export const authState = atom<{
 }>({
   key: 'auth',
   default: {
-    token: ''
-  }
+    token: '',
+  },
 });
