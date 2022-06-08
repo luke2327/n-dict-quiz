@@ -32,6 +32,7 @@
     "@typescript-eslint/no-empty-function": 0,
     "import/no-anonymous-default-export": [2, {"allowObject": true, "allowArrowFunction": true}],
     "react/display-name": 0,
-    "jsx-a11y/alt-text": 0
+    "jsx-a11y/alt-text": 0,
+    "@typescript-eslint/no-explicit-any": 0
   }
 }

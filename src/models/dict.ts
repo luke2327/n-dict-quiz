@@ -1,5 +1,5 @@
-type WORDBOOK_SERVICE = 'jakodict';
 type COMMON_LANGUAGE = 'ja' | 'ko';
+type WORDBOOK_SERVICE = 'jakodict';
 type WORDBOOK_SOURCE_NAME =
   | '민중서림 엣센스 일한사전'
   | '민중서림 엣센스 한일사전'
