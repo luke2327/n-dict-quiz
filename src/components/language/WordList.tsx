@@ -11,11 +11,12 @@ const WordList = () => {
     wordList: WORD_LIST;
     wordOnly: string[];
   }>();
+  const recoilToken = useRecoilValue(authState);
+
   useEffect(() => {
     const token = localStorage.getItem('token')
       ? localStorage.getItem('token')
-      : // eslint-disable-next-line react-hooks/rules-of-hooks
-        useRecoilValue(authState);
+      : recoilToken;
 
     async function getWordList() {
       const result = await axios.post('/api/getWordList', {

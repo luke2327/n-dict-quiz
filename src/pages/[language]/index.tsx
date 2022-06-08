@@ -8,19 +8,26 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { authState } from '@src/store/general';
 
 const LanguageDictionary = () => {
   const [languageStore, setLanguageStore] = useRecoilState(languageState);
+  const [auth, setAuth] = useRecoilState(authState);
   const router = useRouter();
   const { language } = router.query;
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = process.env.DICT_TOKEN || localStorage.getItem('token');
 
     if (token) {
       setLanguageStore({
         indexPageStep: 3,
       });
+      setAuth({
+        ...auth,
+        token,
+      });
+      localStorage.setItem('token', token);
     }
   }, [setLanguageStore]);
 

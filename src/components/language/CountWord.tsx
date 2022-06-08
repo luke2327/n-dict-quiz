@@ -73,13 +73,13 @@ const paperRoutes: Record<keyof COUNT_WORD, string> = {
 
 const CountWord = () => {
   const [dict, setDict] = useRecoilState(dictState);
+  const recoilToken = useRecoilValue(authState);
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token')
       ? localStorage.getItem('token')
-      : // eslint-disable-next-line react-hooks/rules-of-hooks
-        useRecoilValue(authState);
+      : recoilToken;
 
     async function getCountWord() {
       const result = await axios.post<COUNT_WORD>('./api/getCountWord', {
@@ -113,7 +113,7 @@ const CountWord = () => {
               <Paper
                 key={key}
                 sx={{ ...PaperSx, ...paperSxColorWay[key as keyof COUNT_WORD] }}
-                elevation={1}
+                elevation={0}
                 variant="outlined"
                 square
                 onClick={() => selectDict(key as keyof COUNT_WORD)}

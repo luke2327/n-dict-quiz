@@ -14,12 +14,12 @@ import type { WORDBOOK } from '@models/dict';
 
 const WordbookList = () => {
   const [wordbookList, setWordbookList] = useState<WORDBOOK[]>([]);
+  const recoilToken = useRecoilValue(authState);
 
   useEffect(() => {
     const token = localStorage.getItem('token')
       ? localStorage.getItem('token')
-      : // eslint-disable-next-line react-hooks/rules-of-hooks
-        useRecoilValue(authState);
+      : recoilToken;
 
     async function getWordbookList() {
       const result = await axios.post<WORDBOOK[]>('./api/getWordbookList', {
