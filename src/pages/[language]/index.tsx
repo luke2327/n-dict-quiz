@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { authState } from '@src/store/general';
+import TokenFieldError from '@components/error/TokenFieldError';
 
 const LanguageDictionary = () => {
   const [languageStore, setLanguageStore] = useRecoilState(languageState);
@@ -26,6 +27,7 @@ const LanguageDictionary = () => {
       setAuth({
         ...auth,
         token,
+        isLogin: true,
       });
       localStorage.setItem('token', token);
     }
@@ -44,6 +46,7 @@ const LanguageDictionary = () => {
           <WordbookList />
         </Box>
       ) : null}
+      {languageStore.indexPageStep === 90 ? <TokenFieldError /> : null}
     </Box>
   );
 };

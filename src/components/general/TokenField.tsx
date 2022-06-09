@@ -1,14 +1,16 @@
 import { PROFILE } from '@models/profile';
 import { Box, Button, TextField } from '@mui/material';
+import { commonErrorState } from '@src/store/error';
 import { authState, languageState } from '@src/store/general';
 import { profileState } from '@src/store/profile';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 const TokenField = () => {
   const [token, setToken] = useState('EUR');
   const setProfile = useSetRecoilState(profileState);
+  const setCommonError = useSetRecoilState(commonErrorState);
   const setLanguageStore = useSetRecoilState(languageState);
   const setAuth = useSetRecoilState(authState);
 
@@ -17,21 +19,48 @@ const TokenField = () => {
   };
 
   const submit = async () => {
-    const result = await axios.post('./api/getToken', {
-      token,
-    });
+    await axios
+      .post('./api/getToken', {
+        token,
+      })
+      .then(res => {
+        console.log('res', res);
+        const data: PROFILE = res.data;
 
-    const data: PROFILE = result.data;
-    setProfile({
-      ...data,
-    });
-    setLanguageStore({
-      indexPageStep: 2,
-    });
-    setAuth({
-      token,
-    });
-    localStorage.setItem('token', token);
+        if (data.nuid === '') {
+          setLanguageStore({
+            indexPageStep: 2,
+          });
+
+          return;
+        } else {
+          setProfile({
+            ...data,
+          });
+          setLanguageStore({
+            indexPageStep: 2,
+          });
+          setAuth({
+            isLogin: true,
+            token,
+          });
+          localStorage.setItem('token', token);
+        }
+      })
+      .catch(e => {
+        const response = e.response;
+
+        setCommonError({
+          currentError: {
+            status: response.status,
+            message: response.statusText,
+          },
+        });
+
+        setLanguageStore({
+          indexPageStep: 90,
+        });
+      });
   };
 
   return (
