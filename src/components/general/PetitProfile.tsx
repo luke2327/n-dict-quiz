@@ -13,7 +13,12 @@ const PetitProfile = () => {
     router.push('/');
     setAuth({
       token: '',
+      isLogin: false,
     });
+    setLanguageStore({
+      indexPageStep: 1,
+    });
+    localStorage.removeItem('token');
   };
   const next = () => {
     setLanguageStore({

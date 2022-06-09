@@ -34,6 +34,7 @@ const LanguageChooser: React.FC = () => {
       selectedLanguage: language,
       routedLanguage: language.toLowerCase() as SUPPORTED_LANGUAGE_LOWER,
     });
+
     router.push('./' + language.toLowerCase());
   };
 
