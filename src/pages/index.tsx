@@ -2,8 +2,40 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Box, Typography } from '@mui/material';
 import LanguageChooser from '@components/language/LanguageChooser';
+import { authState, languageState } from '@src/store/general';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { commonErrorState } from '@src/store/error';
 
 const Home: NextPage = () => {
+  const setLanguageStore = useSetRecoilState(languageState);
+  const setCommonError = useSetRecoilState(commonErrorState);
+
+  const [auth, setAuth] = useRecoilState(authState);
+
+  useEffect(() => {
+    const token = process.env.DICT_TOKEN || localStorage.getItem('token');
+
+    setLanguageStore({
+      indexPageStep: 1,
+    });
+    setCommonError({
+      currentError: {
+        status: null,
+        message: null,
+      },
+    });
+
+    if (token) {
+      setAuth({
+        ...auth,
+        token,
+        isLogin: true,
+      });
+      localStorage.setItem('token', token);
+    }
+  }, [setLanguageStore, setCommonError, setAuth]);
+
   return (
     <div>
       <Head>

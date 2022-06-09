@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import PetitHeader from '@components/general/PetitHeader';
 import styles from '../styles/Home.module.css';
 import { RecoilRoot } from 'recoil';
+import YesOrNoDialog from '@components/general/YesOrNoDialog';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div className={styles.container}>
           <PetitHeader />
           <Component {...pageProps} />
+
+          <YesOrNoDialog />
           <CssBaseline />
         </div>
       </RecoilRoot>
