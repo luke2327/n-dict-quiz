@@ -1,9 +1,10 @@
 import { WORD_LIST } from '@models/dict';
 import { Box, Grid, List, ListItem, Typography } from '@mui/material';
+import { dictState } from '@src/store/dict';
 import { authState } from '@src/store/general';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const WordList = () => {
   const [viewMeans, setViewMeans] = useState(true);
@@ -12,6 +13,7 @@ const WordList = () => {
     wordOnly: string[];
   }>();
   const recoilToken = useRecoilValue(authState);
+  const [dict, setDict] = useRecoilState(dictState);
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -29,6 +31,13 @@ const WordList = () => {
       const data: { wordList: WORD_LIST; wordOnly: string[] } = result.data;
 
       setWords(data);
+      setDict({
+        ...dict,
+        wordbook: {
+          ...dict.wordbook,
+          length: data.wordList.length,
+        },
+      });
 
       console.log(data);
     }
@@ -37,7 +46,7 @@ const WordList = () => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} maxHeight="80vh" mt={0} overflow="scroll">
       <List dense>
         {words
           ? words.wordList
